@@ -86,19 +86,21 @@ flutter build apk --release
 
 ## 📸 Скриншоты
 
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/1.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/2.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/3.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/4.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/5.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/6.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/7.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/8.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/9.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/10.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/11.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/12.png" alt="Service App">
-<img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/13.png" alt="Service App">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/1.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/2.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/3.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/4.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/5.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/6.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/7.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/8.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/9.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/10.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/11.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/12.png?raw=true" alt="Service App" width="30%">
+  <img src="https://github.com/TemhaN/ServiceApp/blob/main/screenshots/13.png?raw=true" alt="Service App" width="30%">
+</div>
 
 ## 🧠 Автор
 
