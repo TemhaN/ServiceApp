@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   final List<Widget> _screens = [
     HomeScreen(),
     FavoritesScreen(),
-    Container(), // Плейсхолдер для "Создать"
+    Container(),
     ChatsScreen(),
     ProfileScreen(),
   ];
@@ -78,7 +78,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         pageBuilder: (context, animation, secondaryAnimation) => ServiceEditScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return ScaleTransition(
-            scale: Tween<double>(begin: 0.8, end: 1.0).animate(
+            scale: Tween<double>(begin: 0.9, end: 1.0).animate(
               CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
             ),
             child: FadeTransition(
@@ -117,32 +117,32 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15), // Эффект стекла
             child: Container(
-              height: 69, // Увеличенная высота островка
+              height: 76, // Увеличенная высота островка
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.6), // Более прозрачный фон
+                color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
                 borderRadius: BorderRadius.circular(25),
                 border: Border.all(
-                  color: Color(0xFF7B3BEA).withOpacity(0.2), // Тонкая акцентная рамка
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                   width: 0.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xFF7B3BEA).withOpacity(0.2), // Акцентная тень
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
                     blurRadius: 10,
                     offset: Offset(0, 2),
                   ),
                 ],
               ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                selectedItemColor: Color(0xFF7B3BEA),
-                unselectedItemColor: Color(0xFFB0B0B0),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              selectedItemColor: Theme.of(context).colorScheme.onSurface,
+              unselectedItemColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                 selectedLabelStyle: TextStyle(
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.w600,
-                  fontSize: 11, // Уменьшенный размер для компактности
+                  fontSize: 11,
                 ),
                 unselectedLabelStyle: TextStyle(
                   fontFamily: 'Roboto',
@@ -157,17 +157,20 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                         ? ScaleTransition(
                       scale: _fabScaleAnimation,
                       child: Container(
-                        padding: EdgeInsets.all(10), // Уменьшено для компактности
+                        padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xFF7B3BEA), Color(0xFF9B59B6)],
+                            colors: [
+                              Theme.of(context).colorScheme.primary,
+                              Theme.of(context).colorScheme.primary.withOpacity(0.8),
+                            ],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: Color(0xFF7B3BEA).withOpacity(0.3),
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                               blurRadius: 6,
                               offset: Offset(0, 2),
                             ),
@@ -175,8 +178,8 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                         ),
                         child: Icon(
                           _icons[index],
-                          color: Colors.white,
-                          size: 24, // Уменьшенный размер
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          size: 24,
                         ),
                       ),
                     )
@@ -185,14 +188,16 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                       padding: EdgeInsets.all(_selectedIndex == index ? 6 : 4),
                       decoration: BoxDecoration(
                         color: _selectedIndex == index
-                            ? Color(0xFF7B3BEA).withOpacity(0.1)
+                            ? Theme.of(context).colorScheme.onSurface.withOpacity(0.1)
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Icon(
                         _icons[index],
-                        color: _selectedIndex == index ? Color(0xFF7B3BEA) : Color(0xFFB0B0B0),
-                        size: _selectedIndex == index ? 22 : 20, // Уменьшенные размеры
+                        color: _selectedIndex == index
+                            ? Theme.of(context).colorScheme.onSurface
+                            : Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                        size: _selectedIndex == index ? 22 : 20,
                       ),
                     ),
                     label: _labels[index],

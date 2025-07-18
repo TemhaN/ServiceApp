@@ -35,7 +35,7 @@ class _AboutScreenState extends State<AboutScreen> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(64.0),
@@ -49,28 +49,28 @@ class _AboutScreenState extends State<AboutScreen> with SingleTickerProviderStat
                 child: AppBar(
                   title: Text(
                     'О приложении',
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontFamily: 'Roboto',
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  backgroundColor: Color(0xFF7B3BEA).withOpacity(0.8),
+                  backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
                   elevation: 0,
                   centerTitle: false,
                   flexibleSpace: Container(
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Color(0xFF7B3BEA).withOpacity(0.15),
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                           blurRadius: 12,
                           offset: Offset(0, 4),
                         ),
                       ],
                       border: Border(
                         bottom: BorderSide(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
                           width: 0.5,
                         ),
                       ),
@@ -98,10 +98,10 @@ class _AboutScreenState extends State<AboutScreen> with SingleTickerProviderStat
                       child: Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                            color: Color(0xFF7B3BEA).withOpacity(0.3),
+                            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                             width: 0.5,
                           ),
                         ),
@@ -110,29 +110,29 @@ class _AboutScreenState extends State<AboutScreen> with SingleTickerProviderStat
                           children: [
                             Text(
                               'Услуги на дом',
-                              style: TextStyle(
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                 fontFamily: 'Roboto',
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFF1A1A1A),
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                             SizedBox(height: 8),
                             Text(
                               'Версия 1.0.0',
-                              style: TextStyle(
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 fontFamily: 'Roboto',
                                 fontSize: 16,
-                                color: Color(0xFFB0B0B0),
+                                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                               ),
                             ),
                             SizedBox(height: 16),
                             Text(
                               'Услуги на дом — это платформа для создания и поиска услуг. Мы помогаем пользователям находить профессионалов и предлагать свои услуги в удобном формате.',
-                              style: TextStyle(
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 fontFamily: 'Roboto',
                                 fontSize: 14,
-                                color: Color(0xFF1A1A1A),
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                           ],
@@ -146,10 +146,10 @@ class _AboutScreenState extends State<AboutScreen> with SingleTickerProviderStat
                       child: Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                            color: Color(0xFF7B3BEA).withOpacity(0.3),
+                            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                             width: 0.5,
                           ),
                         ),
@@ -158,20 +158,20 @@ class _AboutScreenState extends State<AboutScreen> with SingleTickerProviderStat
                           children: [
                             Text(
                               'О разработчике',
-                              style: TextStyle(
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                 fontFamily: 'Roboto',
-                                fontSize: 18,
+                                fontSize: 24,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFF1A1A1A),
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                             SizedBox(height: 8),
                             Text(
                               'Услуги на дом Team\nEmail: support@serviceapp.com\nСайт: www.serviceapp.com',
-                              style: TextStyle(
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 fontFamily: 'Roboto',
                                 fontSize: 14,
-                                color: Color(0xFF1A1A1A),
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                           ],
@@ -185,10 +185,10 @@ class _AboutScreenState extends State<AboutScreen> with SingleTickerProviderStat
                       child: Center(
                         child: Text(
                           '© 2025 Service App. Все права защищены.',
-                          style: TextStyle(
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             fontFamily: 'Roboto',
                             fontSize: 12,
-                            color: Color(0xFFB0B0B0),
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                           ),
                         ),
                       ),

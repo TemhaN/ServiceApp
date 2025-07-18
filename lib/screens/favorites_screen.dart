@@ -68,18 +68,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
           SnackBar(
             content: Text(
               'Ошибка загрузки избранного: $e',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -108,18 +108,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
           SnackBar(
             content: Text(
               'Войдите, чтобы управлять избранным',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -145,18 +145,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
           SnackBar(
             content: Text(
               'Услуга удалена из избранного',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -173,18 +173,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
           SnackBar(
             content: Text(
               'Ошибка: $e',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -208,43 +208,43 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
     final authProvider = Provider.of<AuthProvider>(context);
 
     return Scaffold(
-      backgroundColor: Color(0xFFF8F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(64.0),
+        preferredSize: Size.fromHeight(76.0),
         child: AnimatedBuilder(
           animation: _animationController,
           builder: (context, child) {
             return Transform.translate(
-              offset: Offset(0, _appBarSlideAnimation.value * 64.0),
+              offset: Offset(0, _appBarSlideAnimation.value * 76.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
                 child: AppBar(
                   automaticallyImplyLeading: false,
                   title: Text(
                     'Избранное',
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontFamily: 'Roboto',
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  backgroundColor: Color(0xFF7B3BEA).withOpacity(0.8),
+                  backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
                   elevation: 0,
                   centerTitle: false,
                   flexibleSpace: Container(
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Color(0xFF7B3BEA).withOpacity(0.15),
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                           blurRadius: 12,
                           offset: Offset(0, 4),
                         ),
                       ],
                       border: Border(
                         bottom: BorderSide(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
                           width: 0.5,
                         ),
                       ),
@@ -266,15 +266,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
               Icon(
                 Icons.favorite_border_rounded,
                 size: 48,
-                color: Color(0xFFB0B0B0),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 12),
               Text(
                 'Войдите, чтобы просматривать избранное',
-                style: TextStyle(
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontFamily: 'Roboto',
                   fontSize: 18,
-                  color: Color(0xFFB0B0B0),
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,
@@ -296,15 +296,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
               Icon(
                 Icons.favorite_border_rounded,
                 size: 48,
-                color: Color(0xFFB0B0B0),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 12),
               Text(
                 'Нет избранных услуг',
-                style: TextStyle(
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontFamily: 'Roboto',
                   fontSize: 18,
-                  color: Color(0xFFB0B0B0),
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,
@@ -323,7 +323,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
             crossAxisCount: 2,
             crossAxisSpacing: 16.0,
             mainAxisSpacing: 16.0,
-            childAspectRatio: 1.0,
+            childAspectRatio: 0.86,
           ),
           itemCount: _favorites.length,
           itemBuilder: (context, index) {
@@ -362,15 +362,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: Color(0xFF7B3BEA).withOpacity(0.2),
+                      color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                       width: 0.5,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Color(0xFF7B3BEA).withOpacity(0.15),
+                        color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                         blurRadius: 10,
                         offset: Offset(0, 4),
                       ),
@@ -391,7 +391,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
                               fit: BoxFit.cover,
                               placeholder: (context, url) => Center(
                                 child: CircularProgressIndicator(
-                                  color: Color(0xFF7B3BEA),
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
                               ),
                               errorWidget: (context, url, error) => Image.asset(
@@ -417,11 +417,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
                                 duration: Duration(milliseconds: 200),
                                 padding: EdgeInsets.all(6),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.8),
+                                  color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Color(0xFF7B3BEA).withOpacity(0.2),
+                                      color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                                       blurRadius: 6,
                                       offset: Offset(0, 2),
                                     ),
@@ -429,7 +429,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
                                 ),
                                 child: Icon(
                                   Icons.favorite,
-                                  color: Color(0xFF7B3BEA),
+                                  color: Theme.of(context).colorScheme.primary,
                                   size: 18,
                                 ),
                               ),
@@ -449,11 +449,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
                                 children: [
                                   Text(
                                     service.price != null ? '${service.price} \u20B8' : 'Не указана',
-                                    style: TextStyle(
+                                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                       fontFamily: 'Roboto',
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0xFF7B3BEA),
+                                      color: Theme.of(context).colorScheme.primary,
                                     ),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -461,11 +461,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
                                   SizedBox(height: 4),
                                   Text(
                                     service.title,
-                                    style: TextStyle(
+                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                       fontFamily: 'Roboto',
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0xFF1A1A1A),
+                                      color: Theme.of(context).colorScheme.onSurface,
                                     ),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -477,28 +477,28 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
                                 children: [
                                   Text(
                                     service.categoryName ?? 'Без категории',
-                                    style: TextStyle(
+                                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                       fontFamily: 'Roboto',
                                       fontSize: 12,
-                                      color: Color(0xFFB0B0B0),
+                                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                                     ),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Text(
                                     '•',
-                                    style: TextStyle(
+                                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                       fontFamily: 'Roboto',
                                       fontSize: 12,
-                                      color: Color(0xFFB0B0B0),
+                                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                                     ),
                                   ),
                                   Text(
                                     service.location ?? 'Не указано',
-                                    style: TextStyle(
+                                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                       fontFamily: 'Roboto',
                                       fontSize: 12,
-                                      color: Color(0xFFB0B0B0),
+                                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                                     ),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,

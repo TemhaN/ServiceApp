@@ -19,6 +19,18 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
   final _descriptionController = TextEditingController();
   final _priceController = TextEditingController();
   final _locationController = TextEditingController();
+
+  List<String> _locations = [
+    'Все',
+    'Алматы',
+    'Астана',
+    'Шымкент',
+    'Актобе',
+    'Караганда',
+    'Атырау'
+  ];
+  String? _selectedLocation;
+
   List<File> _newImages = [];
   List<ServiceImage> _existingImages = [];
   int? _primaryImageIndex;
@@ -38,6 +50,7 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
       _descriptionController.text = widget.service!.description ?? '';
       _priceController.text = widget.service!.price?.toString() ?? '';
       _locationController.text = widget.service!.location ?? '';
+      _selectedLocation = widget.service!.location ?? 'Все';
       _categoryId = widget.service!.categoryId;
       _existingImages = widget.service!.serviceImages;
       for (int i = 0; i < _existingImages.length; i++) {
@@ -147,15 +160,12 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
         }
       }
 
-      print(
-          'Создание/обновление услуги: title=${_titleController.text}, description=${_descriptionController.text}, price=$price, location=${_locationController.text}, categoryId=$_categoryId, existingImages=${_existingImages.length}, newImages=${_newImages.length}, primaryImageIndex=$_primaryImageIndex, serverPrimaryImageIndex=$serverPrimaryImageIndex, existingImageIds=$existingImageIds');
-
       if (widget.service == null) {
         await ApiService.createService(
           title: _titleController.text,
           description: _descriptionController.text,
           price: price ?? 0,
-          location: _locationController.text,
+          location: _selectedLocation == 'Все' ? '' : _selectedLocation!,
           categoryId: _categoryId!,
           images: _newImages,
           primaryImageIndex: serverPrimaryImageIndex,
@@ -166,7 +176,7 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
           title: _titleController.text,
           description: _descriptionController.text,
           price: price,
-          location: _locationController.text,
+          location: _selectedLocation == 'Все' ? '' : _selectedLocation!,
           categoryId: _categoryId!,
           images: _newImages.isNotEmpty ? _newImages : null,
           primaryImageIndex: serverPrimaryImageIndex,
@@ -219,7 +229,7 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
   Widget build(BuildContext context) {
     final totalImages = _existingImages.length + _newImages.length;
     return Scaffold(
-      backgroundColor: Color(0xFFF8F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(64.0),
         child: ClipRRect(
@@ -228,27 +238,27 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
             automaticallyImplyLeading: true,
             title: Text(
               widget.service == null ? 'Добавить услугу' : 'Редактировать услугу',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
-            backgroundColor: Color(0xFF7B3BEA).withOpacity(0.8),
+            backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
             elevation: 0,
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xFF7B3BEA).withOpacity(0.15),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                     blurRadius: 12,
                     offset: Offset(0, 4),
                   ),
                 ],
                 border: Border(
                   bottom: BorderSide(
-                    color: Colors.white.withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
                     width: 0.5,
                   ),
                 ),
@@ -267,11 +277,11 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
             // Секция изображений
             Text(
               'Изображения',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             SizedBox(height: 8),
@@ -411,19 +421,15 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
                 : Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: Color(0xFF7B3BEA).withOpacity(0.3),
-                  width: 0.5,
-                ),
+                color: Theme.of(context).colorScheme.surface,
+                borderRadius: BorderRadius.circular(45),
               ),
               child: Text(
                 'Изображения не выбраны',
-                style: TextStyle(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontFamily: 'Roboto',
                   fontSize: 16,
-                  color: Color(0xFFB0B0B0),
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(1),
                 ),
               ),
             ),
@@ -431,90 +437,90 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
             // Поля формы
             Text(
               'Основная информация',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             SizedBox(height: 12),
-            TextField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                labelText: 'Название',
-                labelStyle: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFFB0B0B0),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
-                    width: 0.5,
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
-                    width: 0.5,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA),
-                    width: 1,
-                  ),
-                ),
-              ),
-              style: TextStyle(
+          TextField(
+            controller: _titleController,
+            decoration: InputDecoration(
+              labelText: 'Название',
+              labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
-                fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
+              filled: true,
+              fillColor: Theme.of(context).colorScheme.surface,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                  width: 0.5,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                  width: 0.5,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 1,
+                ),
+              ),
+            ),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontFamily: 'Roboto',
+              fontSize: 16,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
             ),
             SizedBox(height: 12),
             TextField(
               controller: _descriptionController,
               decoration: InputDecoration(
                 labelText: 'Описание',
-                labelStyle: TextStyle(
+                labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontFamily: 'Roboto',
-                  color: Color(0xFFB0B0B0),
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                 ),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: Theme.of(context).colorScheme.surface,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                     width: 0.5,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                     width: 0.5,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA),
+                    color: Theme.of(context).colorScheme.primary,
                     width: 1,
                   ),
                 ),
               ),
               maxLines: 4,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             SizedBox(height: 12),
@@ -522,146 +528,159 @@ class _ServiceEditScreenState extends State<ServiceEditScreen> {
               controller: _priceController,
               decoration: InputDecoration(
                 labelText: 'Цена (KZT)',
-                labelStyle: TextStyle(
+                labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontFamily: 'Roboto',
-                  color: Color(0xFFB0B0B0),
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                 ),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: Theme.of(context).colorScheme.surface,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                     width: 0.5,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                     width: 0.5,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA),
+                    color: Theme.of(context).colorScheme.primary,
                     width: 1,
                   ),
                 ),
               ),
-              keyboardType: TextInputType.number,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             SizedBox(height: 12),
-            TextField(
-              controller: _locationController,
+            DropdownButtonFormField<String>(
+              value: _selectedLocation ?? _locations[0],
               decoration: InputDecoration(
                 labelText: 'Местоположение',
-                labelStyle: TextStyle(
+                labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontFamily: 'Roboto',
-                  color: Color(0xFFB0B0B0),
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                 ),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: Theme.of(context).colorScheme.surface,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                     width: 0.5,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                     width: 0.5,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA),
+                    color: Theme.of(context).colorScheme.primary,
                     width: 1,
                   ),
                 ),
               ),
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 16,
-                color: Color(0xFF1A1A1A),
-              ),
-            ),
-            SizedBox(height: 12),
-            DropdownButtonFormField<int>(
-              value: _categoryId,
-              decoration: InputDecoration(
-                labelText: 'Категория',
-                labelStyle: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFFB0B0B0),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
-                    width: 0.5,
+              items: _locations.map((location) {
+                return DropdownMenuItem(
+                  value: location,
+                  child: Text(
+                    location,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontFamily: 'Roboto',
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA).withOpacity(0.3),
-                    width: 0.5,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Color(0xFF7B3BEA),
-                    width: 1,
-                  ),
-                ),
-              ),
-              items: _categories
-                  .map((category) => DropdownMenuItem(
-                value: category.categoryId,
-                child: Text(
-                  category.name,
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 16,
-                    color: Color(0xFF1A1A1A),
-                  ),
-                ),
-              ))
-                  .toList(),
+                );
+              }).toList(),
               onChanged: (value) {
                 setState(() {
-                  _categoryId = value;
+                  _selectedLocation = value;
+                  _locationController.text = value == 'Все' ? '' : value!; // Синхронизация с _locationController
                 });
               },
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 16,
-                color: Color(0xFF1A1A1A),
+            ),
+            SizedBox(height: 12),
+        DropdownButtonFormField<int>(
+          value: _categoryId,
+          decoration: InputDecoration(
+            labelText: 'Категория',
+            labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontFamily: 'Roboto',
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            ),
+            filled: true,
+            fillColor: Theme.of(context).colorScheme.surface,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                width: 0.5,
               ),
             ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                width: 0.5,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.primary,
+                width: 1,
+              ),
+            ),
+          ),
+          items: _categories
+              .map((category) => DropdownMenuItem(
+            value: category.categoryId,
+            child: Text(
+              category.name,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontFamily: 'Roboto',
+                fontSize: 16,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+          ))
+              .toList(),
+          onChanged: (value) {
+            setState(() {
+              _categoryId = value;
+            });
+          },
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontFamily: 'Roboto',
+            fontSize: 16,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
             if (_error != null)
               Padding(
                 padding: EdgeInsets.only(top: 16),
                 child: Text(
                   _error!,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontFamily: 'Roboto',
                     fontSize: 16,
-                    color: Colors.red,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                 ),
               ),

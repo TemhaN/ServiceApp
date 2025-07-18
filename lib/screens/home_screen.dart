@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     'Караганда',
     'Атырау'
   ];
-  final ScrollController _scrollController = ScrollController(); // Новый контроллер
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -50,12 +50,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _minPriceController.text = _minPrice?.toString() ?? '';
     _maxPriceController.text = _maxPrice?.toString() ?? '';
 
-    // Добавляем слушатель для прокрутки
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent - 200 &&
           !_isLoading) {
-        _loadServices(); // Загружаем следующую страницу
+        _loadServices();
       }
     });
   }
@@ -66,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _searchController.dispose();
     _minPriceController.dispose();
     _maxPriceController.dispose();
-    _scrollController.dispose(); // Очищаем контроллер
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -86,19 +85,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Ошибка загрузки категорий: $e',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 16,
-                color: Color(0xFF1A1A1A),
-              ),
+              'Ошибка загрузки категорий: $e, пиздец',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -131,19 +126,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Ошибка загрузки избранного: $e',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 16,
-                color: Color(0xFF1A1A1A),
-              ),
+              'Ошибка загрузки избранного: $e, херня',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -169,19 +160,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Войдите, чтобы добавить в избранное',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 16,
-                color: Color(0xFF1A1A1A),
-              ),
+              'Войди, чтобы добавить в избранное, бери и делай',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -211,18 +198,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             SnackBar(
               content: Text(
                 'Услуга удалена из избранного',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 16,
-                  color: Color(0xFF1A1A1A),
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.surface,
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
                 side: BorderSide(
-                  color: Color(0xFF7B3BEA).withOpacity(0.3),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                   width: 0.5,
                 ),
               ),
@@ -251,18 +234,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             SnackBar(
               content: Text(
                 'Услуга добавлена в избранное',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 16,
-                  color: Color(0xFF1A1A1A),
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.surface,
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
                 side: BorderSide(
-                  color: Color(0xFF7B3BEA).withOpacity(0.3),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                   width: 0.5,
                 ),
               ),
@@ -280,19 +259,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Ошибка: $e',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 16,
-                color: Color(0xFF1A1A1A),
-              ),
+              'Ошибка: $e, пиздец',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -386,7 +361,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       if (mounted) {
         setState(() {
           _services.addAll(newServices);
-          if (newServices.isNotEmpty) _page++; // Увеличиваем страницу только если данные есть
+          if (newServices.isNotEmpty) _page++;
         });
       }
     } catch (e) {
@@ -394,19 +369,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Ошибка загрузки: $e',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 16,
-                color: Color(0xFF1A1A1A),
-              ),
+              'Ошибка загрузки: $e, херня какая-то',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: BorderSide(
-                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 width: 0.5,
               ),
             ),
@@ -440,10 +411,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
                 border: Border.all(
-                  color: Color(0xFF7B3BEA).withOpacity(0.2),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                   width: 0.5,
                 ),
               ),
@@ -457,12 +428,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       children: [
                         Text(
                           'Фильтры',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF1A1A1A),
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                         SizedBox(height: 16),
                         Text(
@@ -471,7 +437,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             fontFamily: 'Roboto',
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF7B3BEA),
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                         SizedBox(height: 8),
@@ -479,7 +445,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: Color(0xFF7B3BEA).withOpacity(0.3),
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                             ),
                           ),
                           child: DropdownButtonHideUnderline(
@@ -494,11 +460,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         horizontal: 16, vertical: 12),
                                     child: Text(
                                       category.name,
-                                      style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 14,
-                                        color: Color(0xFF1A1A1A),
-                                      ),
+                                      style: Theme.of(context).textTheme.bodyMedium,
                                     ),
                                   ),
                                 );
@@ -508,8 +470,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   _selectedCategory = value;
                                 });
                               },
-                              style: TextStyle(color: Color(0xFF1A1A1A)),
-                              dropdownColor: Color(0xFFF8F7FC),
+                              style: Theme.of(context).textTheme.bodyMedium,
+                              dropdownColor: Theme.of(context).colorScheme.background,
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
@@ -521,7 +483,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             fontFamily: 'Roboto',
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF7B3BEA),
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                         SizedBox(height: 8),
@@ -532,29 +494,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 controller: _minPriceController,
                                 decoration: InputDecoration(
                                   labelText: 'Мин',
-                                  labelStyle: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 14,
-                                    color: Color(0xFFB0B0B0),
-                                  ),
+                                  labelStyle: Theme.of(context).inputDecorationTheme.labelStyle,
+                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                   filled: true,
-                                  fillColor: Color(0xFFF8F7FC).withOpacity(0.9),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(
-                                      color: Color(0xFF7B3BEA).withOpacity(0.3),
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(
-                                      color: Color(0xFF7B3BEA),
-                                      width: 1,
-                                    ),
-                                  ),
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 12),
+                                  fillColor: Theme.of(context).inputDecorationTheme.fillColor,
+                                  border: Theme.of(context).inputDecorationTheme.border,
+                                  enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
+                                  focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
                                 ),
                                 keyboardType: TextInputType.number,
                                 onChanged: (value) {
@@ -562,11 +508,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     _minPrice = double.tryParse(value);
                                   });
                                 },
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 14,
-                                  color: Color(0xFF1A1A1A),
-                                ),
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ),
                             SizedBox(width: 16),
@@ -575,29 +517,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 controller: _maxPriceController,
                                 decoration: InputDecoration(
                                   labelText: 'Макс',
-                                  labelStyle: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 14,
-                                    color: Color(0xFFB0B0B0),
-                                  ),
+                                  labelStyle: Theme.of(context).inputDecorationTheme.labelStyle,
+                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                   filled: true,
-                                  fillColor: Color(0xFFF8F7FC).withOpacity(0.9),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(
-                                      color: Color(0xFF7B3BEA).withOpacity(0.3),
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(
-                                      color: Color(0xFF7B3BEA),
-                                      width: 1,
-                                    ),
-                                  ),
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 12),
+                                  fillColor: Theme.of(context).inputDecorationTheme.fillColor,
+                                  border: Theme.of(context).inputDecorationTheme.border,
+                                  enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
+                                  focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
                                 ),
                                 keyboardType: TextInputType.number,
                                 onChanged: (value) {
@@ -605,11 +531,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     _maxPrice = double.tryParse(value);
                                   });
                                 },
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 14,
-                                  color: Color(0xFF1A1A1A),
-                                ),
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ),
                           ],
@@ -621,7 +543,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             fontFamily: 'Roboto',
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF7B3BEA),
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                         SizedBox(height: 8),
@@ -629,7 +551,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: Color(0xFF7B3BEA).withOpacity(0.3),
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                             ),
                           ),
                           child: DropdownButtonHideUnderline(
@@ -644,11 +566,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         horizontal: 16, vertical: 12),
                                     child: Text(
                                       location,
-                                      style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 14,
-                                        color: Color(0xFF1A1A1A),
-                                      ),
+                                      style: Theme.of(context).textTheme.bodyMedium,
                                     ),
                                   ),
                                 );
@@ -658,8 +576,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   _selectedLocation = value;
                                 });
                               },
-                              style: TextStyle(color: Color(0xFF1A1A1A)),
-                              dropdownColor: Color(0xFFF8F7FC),
+                              style: Theme.of(context).textTheme.bodyMedium,
+                              dropdownColor: Theme.of(context).colorScheme.background,
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
@@ -683,12 +601,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               },
                               child: Text(
                                 'Сбросить',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 16,
-                                  color: Color(0xFFB0B0B0),
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ),
                             ElevatedButton(
@@ -702,16 +615,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 Navigator.pop(context);
                                 _loadServices(reset: true);
                               },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xFF7B3BEA),
-                                foregroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 12),
-                                elevation: 0,
-                              ),
+                              style: Theme.of(context).elevatedButtonTheme.style,
                               child: Text(
                                 'Применить',
                                 style: TextStyle(
@@ -738,19 +642,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true,
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(
-          controller: _scrollController, // Подключаем контроллер
+          controller: _scrollController,
           slivers: [
             SliverAppBar(
               floating: true,
               snap: true,
               pinned: false,
-              backgroundColor: Color(0xFFF8F7FC),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               elevation: 0,
+              automaticallyImplyLeading: false,
               flexibleSpace: FlexibleSpaceBar(
                 background: Padding(
                   padding:
@@ -758,50 +663,45 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   child: Row(
                     children: [
                       Expanded(
-                        child: TextField(
+                        child:TextField(
                           controller: _searchController,
                           decoration: InputDecoration(
                             hintText: 'Поиск услуг',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Roboto',
-                              color: Color(0xFFB0B0B0),
-                              fontSize: 14,
+                            hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                             ),
+                            prefixIcon: Icon(
+                              Icons.search_rounded,
+                              color: Theme.of(context).colorScheme.primary,
+                              size: 20,
+                            ),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                             filled: true,
-                            fillColor: Color(0xFFF8F7FC).withOpacity(0.9),
+                            fillColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide.none,
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40),
+                              borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(
-                                color: Color(0xFF7B3BEA).withOpacity(0.3),
+                                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                                 width: 0.5,
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40),
+                              borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(
-                                color: Color(0xFF7B3BEA),
+                                color: Theme.of(context).colorScheme.primary,
                                 width: 1,
                               ),
                             ),
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            prefixIcon: Icon(
-                              Icons.search_rounded,
-                              color: Color(0xFF7B3BEA),
-                              size: 20,
-                            ),
                           ),
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 14,
-                            color: Color(0xFF1A1A1A),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                           onSubmitted: (_) => _loadServices(reset: true),
-                        ),
+                        )
                       ),
                       SizedBox(width: 8),
                       GestureDetector(
@@ -810,7 +710,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           padding: EdgeInsets.all(12),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xFF7B3BEA), Color(0xFF9B59B6)],
+                              colors: [
+                                Theme.of(context).colorScheme.primary,
+                                Theme.of(context).colorScheme.secondary
+                              ],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
@@ -827,7 +730,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              toolbarHeight: 68.0,
+              toolbarHeight: 74.0,
             ),
             SliverToBoxAdapter(
               child: Padding(
@@ -838,12 +741,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       : (Provider.of<AuthProvider>(context).isAuthenticated
                       ? 'Рекомендации'
                       : 'Все услуги'),
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF1A1A1A),
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
             ),
@@ -857,16 +755,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 16.0,
-                  mainAxisSpacing: 16.0,
-                  childAspectRatio: 1.0,
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                  childAspectRatio: 0.9,
                 ),
                 delegate: SliverChildBuilderDelegate(
                       (context, index) {
                     if (index == _services.length && _isLoading) {
                       return Center(
                         child: CircularProgressIndicator(
-                          color: Color(0xFF7B3BEA),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       );
                     }
@@ -913,15 +811,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.9),
+                            color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: Color(0xFF7B3BEA).withOpacity(0.2),
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                               width: 0.5,
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Color(0xFF7B3BEA).withOpacity(0.15),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withOpacity(0.15),
                                 blurRadius: 10,
                                 offset: Offset(0, 4),
                               ),
@@ -944,7 +845,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       fit: BoxFit.cover,
                                       placeholder: (context, url) => Center(
                                         child: CircularProgressIndicator(
-                                          color: Color(0xFF7B3BEA),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
                                         ),
                                       ),
                                       errorWidget: (context, url, error) =>
@@ -971,11 +874,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         duration: Duration(milliseconds: 200),
                                         padding: EdgeInsets.all(6),
                                         decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.8),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .surface
+                                              .withOpacity(0.8),
                                           shape: BoxShape.circle,
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Color(0xFF7B3BEA)
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary
                                                   .withOpacity(0.2),
                                               blurRadius: 6,
                                               offset: Offset(0, 2),
@@ -987,8 +895,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                               ? Icons.favorite
                                               : Icons.favorite_border,
                                           color: isFavorited
-                                              ? Color(0xFF7B3BEA)
-                                              : Color(0xFFB0B0B0),
+                                              ? Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                              : Theme.of(context)
+                                              .colorScheme
+                                              .onSurface
+                                              .withOpacity(0.6),
                                           size: 18,
                                         ),
                                       ),
@@ -1015,21 +928,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                 : 'Не указана',
                                             style: TextStyle(
                                               fontFamily: 'Roboto',
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w600,
-                                              color: Color(0xFF7B3BEA),
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
                                             ),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                           ),
-                                          SizedBox(height: 4),
+                                          SizedBox(height: 2),
                                           Text(
                                             service.title,
-                                            style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontSize: 14,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
                                               fontWeight: FontWeight.w600,
-                                              color: Color(0xFF1A1A1A),
                                             ),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
@@ -1042,29 +957,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                           Text(
                                             service.categoryName ??
                                                 'Без категории',
-                                            style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontSize: 12,
-                                              color: Color(0xFFB0B0B0),
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                           Text(
                                             '•',
-                                            style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontSize: 12,
-                                              color: Color(0xFFB0B0B0),
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall,
                                           ),
                                           Text(
                                             service.location ?? 'Не указано',
-                                            style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontSize: 12,
-                                              color: Color(0xFFB0B0B0),
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                           ),

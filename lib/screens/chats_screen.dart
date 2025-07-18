@@ -121,23 +121,23 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // Эффект размытия
           child: AlertDialog(
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             title: Text(
               'Удалить чат',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             content: Text(
               'Вы уверены, что хотите удалить этот чат?',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             actions: [
@@ -145,10 +145,10 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                 onPressed: () => Navigator.pop(context, false),
                 child: Text(
                   'Отмена',
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontFamily: 'Roboto',
                     fontSize: 16,
-                    color: Color(0xFF7B3BEA),
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -156,10 +156,10 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                 onPressed: () => Navigator.pop(context, true),
                 child: Text(
                   'Удалить',
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontFamily: 'Roboto',
                     fontSize: 16,
-                    color: Colors.red,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                 ),
               ),
@@ -175,7 +175,7 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
     final authProvider = Provider.of<AuthProvider>(context);
 
     return Scaffold(
-      backgroundColor: Color(0xFFF8F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true, // Контент прокручивается под островком
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(64.0),
@@ -190,28 +190,28 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                   automaticallyImplyLeading: false,
                   title: Text(
                     'Чаты',
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontFamily: 'Roboto',
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  backgroundColor: Color(0xFF7B3BEA).withOpacity(0.8),
+                  backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
                   elevation: 0,
                   centerTitle: false,
                   flexibleSpace: Container(
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Color(0xFF7B3BEA).withOpacity(0.15),
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                           blurRadius: 12,
                           offset: Offset(0, 4),
                         ),
                       ],
                       border: Border(
                         bottom: BorderSide(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
                           width: 0.5,
                         ),
                       ),
@@ -231,21 +231,21 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
               child: !authProvider.isAuthenticated
                   ? Padding(
                 padding: EdgeInsets.all(16.0),
-                child: Column(
+                child:Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.chat_bubble_outline_rounded,
                       size: 48,
-                      color: Color(0xFFB0B0B0),
+                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: 12),
                     Text(
                       'Войдите, чтобы просматривать чаты',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontFamily: 'Roboto',
                         fontSize: 18,
-                        color: Color(0xFFB0B0B0),
+                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                         fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.center,
@@ -271,15 +271,15 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                     Icon(
                       Icons.chat_bubble_outline_rounded,
                       size: 48,
-                      color: Color(0xFFB0B0B0),
+                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: 12),
                     Text(
                       'Нет активных чатов',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontFamily: 'Roboto',
                         fontSize: 18,
-                        color: Color(0xFFB0B0B0),
+                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                         fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.center,
@@ -317,10 +317,10 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                       return Dismissible(
                         key: Key(chat.chatId.toString()),
                         background: Container(
-                          color: Colors.red,
+                          color: Theme.of(context).colorScheme.error,
                           alignment: Alignment.centerRight,
                           padding: EdgeInsets.only(right: 16),
-                          child: Icon(Icons.delete, color: Colors.white),
+                          child: Icon(Icons.delete, color: Theme.of(context).colorScheme.primary),
                         ),
                         direction: DismissDirection.endToStart,
                         confirmDismiss: (direction) async {
@@ -330,16 +330,16 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                         child: Container(
                           margin: EdgeInsets.only(bottom: 12.0),
                           decoration: BoxDecoration(
-                            color: Colors.white, // Полностью белый фон
-                            borderRadius: BorderRadius.circular(20), // Увеличенное скругление
+                            color: Theme.of(context).colorScheme.surface,
+                            borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: Color(0xFF7B3BEA).withOpacity(0.2),
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                               width: 0.5,
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Color(0xFF7B3BEA).withOpacity(0.2), // Усиленная тень
-                                blurRadius: 12, // Увеличенный радиус размытия
+                                color: Theme.of(context).colorScheme.primary.withOpacity(0.15),// Усиленная тень
+                                blurRadius: 12,
                                 offset: Offset(0, 4),
                               ),
                             ],
@@ -347,16 +347,16 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                           child: ListTile(
                             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                             leading: CircleAvatar(
-                              backgroundColor: Color(0xFF7B3BEA),
-                              radius: 24, // Увеличенный размер аватара
+                              backgroundColor: Theme.of(context).colorScheme.primary,
+                              radius: 24,
                               child: Text(
                                 subtitle.isNotEmpty ? subtitle[0] : '?',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 18, // Чуть больше для читаемости
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                fontFamily: 'Roboto',
+                                fontSize: 18,
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontWeight: FontWeight.w600,
+                              ),
                               ),
                             ),
                             title: Row(
@@ -364,11 +364,11 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                                 Expanded(
                                   child: Text(
                                     title,
-                                    style: TextStyle(
+                                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                       fontFamily: 'Roboto',
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0xFF1A1A1A),
+                                      color: Theme.of(context).colorScheme.onSurface,
                                     ),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -380,11 +380,11 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                                       .toString()
                                       .substring(11, 16) ??
                                       '',
-                                  style: TextStyle(
+                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                     fontFamily: 'Roboto',
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xFFB0B0B0),
+                                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                                   ),
                                 ),
                               ],
@@ -394,11 +394,11 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                               children: [
                                 Text(
                                   subtitle,
-                                  style: TextStyle(
+                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     fontFamily: 'Roboto',
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xFF1A1A1A), // Тёмный цвет для ника
+                                    color: Theme.of(context).colorScheme.onSurface,
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -406,11 +406,11 @@ class _ChatsScreenState extends State<ChatsScreen> with SingleTickerProviderStat
                                 SizedBox(height: 4),
                                 Text(
                                   lastMessage,
-                                  style: TextStyle(
+                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     fontFamily: 'Roboto',
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xFFB0B0B0), // Серый для сообщения
+                                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,

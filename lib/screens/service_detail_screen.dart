@@ -272,11 +272,11 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               boxShadow: [
                 BoxShadow(
-                  color: Color(0xFF7B3BEA).withOpacity(0.2),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                   blurRadius: 12,
                   offset: Offset(0, -4),
                 ),
@@ -290,22 +290,22 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                 children: [
                   Text(
                     'Связаться с ${_author!.firstName} ${_author!.lastName}',
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontFamily: 'Roboto',
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF1A1A1A),
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   SizedBox(height: 16),
                   ListTile(
-                    leading: Icon(Icons.chat, color: Color(0xFF7B3BEA)),
+                    leading: Icon(Icons.chat, color: Theme.of(context).colorScheme.primary),
                     title: Text(
                       'Написать в чат',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontFamily: 'Roboto',
                         fontSize: 16,
-                        color: Color(0xFF1A1A1A),
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     onTap: () async {
@@ -366,10 +366,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                     leading: Icon(Icons.phone, color: Color(0xFF7B3BEA)),
                     title: Text(
                       'Позвонить',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontFamily: 'Roboto',
                         fontSize: 16,
-                        color: Color(0xFF1A1A1A),
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     onTap: () async {
@@ -400,10 +400,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                     leading: Icon(Icons.message, color: Color(0xFF7B3BEA)),
                     title: Text(
                       'Написать в WhatsApp',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontFamily: 'Roboto',
                         fontSize: 16,
-                        color: Color(0xFF1A1A1A),
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     onTap: () async {
@@ -451,10 +451,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                       },
                       child: Text(
                         'Отмена',
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontFamily: 'Roboto',
                           fontSize: 16,
-                          color: Color(0xFFB0B0B0),
+                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                         ),
                       ),
                     ),
@@ -487,15 +487,15 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
           child: StatefulBuilder(
             builder: (context, setState) {
               return AlertDialog(
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.surface,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 title: Text(
                   review == null ? 'Добавить отзыв' : 'Редактировать отзыв',
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontFamily: 'Roboto',
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF1A1A1A),
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 content: SingleChildScrollView(
@@ -504,10 +504,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                     children: [
                       Text(
                         'Оценка:',
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontFamily: 'Roboto',
                           fontSize: 16,
-                          color: Color(0xFF1A1A1A),
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                       SizedBox(height: 8),
@@ -517,7 +517,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                           return IconButton(
                             icon: Icon(
                               index < rating ? Icons.star : Icons.star_border,
-                              color: Colors.amber,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
                               setState(() {
@@ -532,30 +532,30 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                         controller: commentController,
                         decoration: InputDecoration(
                           labelText: 'Комментарий (необязательно)',
-                          labelStyle: TextStyle(
+                          labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontFamily: 'Roboto',
-                            color: Color(0xFFB0B0B0),
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                           ),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Theme.of(context).colorScheme.surface,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(
-                              color: Color(0xFF7B3BEA).withOpacity(0.3),
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                               width: 0.5,
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(
-                              color: Color(0xFF7B3BEA).withOpacity(0.3),
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                               width: 0.5,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(
-                              color: Color(0xFF7B3BEA),
+                              color: Theme.of(context).colorScheme.primary,
                               width: 1,
                             ),
                           ),
@@ -576,10 +576,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                     onPressed: () => Navigator.pop(context),
                     child: Text(
                       'Отмена',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontFamily: 'Roboto',
                         fontSize: 16,
-                        color: Color(0xFF7B3BEA),
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),
@@ -609,10 +609,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                     },
                     child: Text(
                       review == null ? 'Добавить' : 'Сохранить',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontFamily: 'Roboto',
                         fontSize: 16,
-                        color: Color(0xFF7B3BEA),
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),
@@ -640,18 +640,18 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
       SnackBar(
         content: Text(
           message,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontFamily: 'Roboto',
             fontSize: 16,
-            color: Color(0xFF1A1A1A),
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: BorderSide(
-            color: Color(0xFF7B3BEA).withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
             width: 0.5,
           ),
         ),
@@ -679,7 +679,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
     );
 
     return Scaffold(
-      backgroundColor: Color(0xFFF8F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(64.0),
         child: ClipRRect(
@@ -688,14 +688,14 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
             automaticallyImplyLeading: true,
             title: Text(
               _service?.title ?? 'Детали услуги',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
-            backgroundColor: Color(0xFF7B3BEA).withOpacity(0.8),
+            backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
             elevation: 0,
             actions: [
               GestureDetector(
@@ -711,7 +711,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                   padding: EdgeInsets.all(8),
                   child: Icon(
                     isFavorited ? Icons.favorite : Icons.favorite_border,
-                    color: isFavorited ? Colors.red : Colors.white,
+                    color: isFavorited ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
               ),
@@ -728,7 +728,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                   padding: EdgeInsets.all(8),
                   child: Icon(
                     Icons.share,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
               ),
@@ -737,14 +737,14 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xFF7B3BEA).withOpacity(0.15),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                     blurRadius: 12,
                     offset: Offset(0, 4),
                   ),
                 ],
                 border: Border(
                   bottom: BorderSide(
-                    color: Colors.white.withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
                     width: 0.5,
                   ),
                 ),
@@ -791,7 +791,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                         fontFamily: 'Roboto',
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xFF1A1A1A),
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     SizedBox(height: 8),
@@ -903,14 +903,17 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
             decoration: BoxDecoration(
               gradient: gradient ??
                   LinearGradient(
-                    colors: [Color(0xFF7B3BEA), Color(0xFF9B59B6)],
+                    colors: [
+                      Theme.of(context).colorScheme.primary,
+                      Theme.of(context).colorScheme.secondary,
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Color(0xFF7B3BEA).withOpacity(0.3),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                   blurRadius: 8,
                   offset: Offset(0, 4),
                 ),
@@ -918,10 +921,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
             ),
             child: Text(
               text,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
@@ -938,11 +941,11 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
         width: MediaQuery.of(context).size.width,
         height: 250.0,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
           boxShadow: [
             BoxShadow(
-              color: Color(0xFF7B3BEA).withOpacity(0.2),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
               blurRadius: 12,
               offset: Offset(0, 4),
             ),
@@ -997,7 +1000,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
             final imageWidget = CachedNetworkImage(
               imageUrl: '${ApiService.baseImageUrl}${image.imageUrl}',
               fit: BoxFit.cover,
-              placeholder: (context, url) => Center(child: CircularProgressIndicator(color: Color(0xFF7B3BEA))),
+              placeholder: (context, url) => Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary)),
               errorWidget: (context, url, error) {
                 print('Image load error: $error, URL: $url');
                 return Image.asset(
@@ -1011,7 +1014,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
               duration: Duration(milliseconds: 300),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
                 boxShadow: [
                   BoxShadow(
@@ -1064,20 +1067,20 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
       children: [
         Text(
           'Описание',
-          style: TextStyle(
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontFamily: 'Roboto',
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            color: Color(0xFF1A1A1A),
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         SizedBox(height: 8),
         Text(
           _service!.description ?? 'Описание отсутствует',
-          style: TextStyle(
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontFamily: 'Roboto',
             fontSize: 14,
-            color: Color(0xFF1A1A1A),
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
       ],
@@ -1092,11 +1095,11 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
           children: [
             Icon(Icons.location_on, color: Color(0xFF7B3BEA), size: 20),
             Text(
-              'Местоположение: ${_service!.location ?? "Не указано"}',
+              '  Местоположение: ${_service!.location ?? "Не указано"}',
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 14,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
           ],
@@ -1111,7 +1114,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 14,
-                color: Color(0xFFB0B0B0),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
           ],
@@ -1131,7 +1134,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
             fontFamily: 'Roboto',
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            color: Color(0xFF1A1A1A),
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         SizedBox(height: 8),
@@ -1143,7 +1146,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
           style: TextStyle(
             fontFamily: 'Roboto',
             fontSize: 14,
-            color: Color(0xFFB0B0B0),
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         )
             : Row(
@@ -1157,7 +1160,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: 18,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.onPrimary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -1173,7 +1176,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                       fontFamily: 'Roboto',
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF1A1A1A),
+                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                     ),
                   ),
                   if (_author!.phone != null) ...[
@@ -1187,7 +1190,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 14,
-                            color: Color(0xFF1A1A1A),
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                           ),
                         ),
                       ],
@@ -1230,7 +1233,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                 fontFamily: 'Roboto',
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             if (!authProvider.isAuthenticated || userReview.id == 0)
@@ -1256,7 +1259,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
           style: TextStyle(
             fontFamily: 'Roboto',
             fontSize: 14,
-            color: Color(0xFFB0B0B0),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
           ),
         )
             : ListView.builder(
@@ -1271,7 +1274,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
               duration: Duration(milliseconds: 300),
               margin: EdgeInsets.only(bottom: 12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: Color(0xFF7B3BEA).withOpacity(0.3),
@@ -1299,7 +1302,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                             fontFamily: 'Roboto',
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF1A1A1A),
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                           ),
                         ),
                         Row(
@@ -1320,7 +1323,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           fontSize: 14,
-                          color: Color(0xFF1A1A1A),
+                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                         ),
                       ),
                     SizedBox(height: 8),
@@ -1329,7 +1332,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                       style: TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 12,
-                        color: Color(0xFFB0B0B0),
+                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                       ),
                     ),
                     if (isUserReview) ...[
@@ -1382,7 +1385,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
             fontFamily: 'Roboto',
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            color: Color(0xFF1A1A1A),
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         SizedBox(height: 8),
@@ -1394,7 +1397,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
           style: TextStyle(
             fontFamily: 'Roboto',
             fontSize: 14,
-            color: Color(0xFFB0B0B0),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
           ),
         )
             : ListView.builder(
@@ -1413,7 +1416,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
               duration: Duration(milliseconds: 300),
               margin: EdgeInsets.only(bottom: 12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: Color(0xFF7B3BEA).withOpacity(0.3),
@@ -1460,7 +1463,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                     fontFamily: 'Roboto',
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF1A1A1A),
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                   ),
                 ),
                 subtitle: Text(
@@ -1468,7 +1471,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     fontSize: 14,
-                    color: Color(0xFFB0B0B0),
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                   ),
                 ),
               ),
@@ -1489,7 +1492,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
             fontFamily: 'Roboto',
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            color: Color(0xFF1A1A1A),
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         SizedBox(height: 8),
@@ -1501,7 +1504,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
           style: TextStyle(
             fontFamily: 'Roboto',
             fontSize: 14,
-            color: Color(0xFFB0B0B0),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
           ),
         )
             : ListView.builder(
@@ -1520,7 +1523,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
               duration: Duration(milliseconds: 300),
               margin: EdgeInsets.only(bottom: 12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: Color(0xFF7B3BEA).withOpacity(0.3),
@@ -1567,7 +1570,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                     fontFamily: 'Roboto',
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF1A1A1A),
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                   ),
                 ),
                 subtitle: Text(
@@ -1575,7 +1578,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> with SingleTi
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     fontSize: 14,
-                    color: Color(0xFFB0B0B0),
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                   ),
                 ),
               ),

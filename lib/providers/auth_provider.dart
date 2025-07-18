@@ -107,21 +107,28 @@ class AuthProvider with ChangeNotifier {
     String? firstName,
     String? lastName,
     String? phone,
+    String? password,
   }) async {
     try {
+      final token = await ApiService.getToken();
+      if (token == null) throw Exception('Не авторизован');
+
       final response = await ApiService.updateProfile(
         email: email,
         firstName: firstName,
         lastName: lastName,
         phone: phone,
+        password: password,
       );
-      _user = User.fromJson(response['user'] ?? await ApiService.getProfile());
+
+      final updatedUser = await ApiService.getProfile();
+      _user = updatedUser;
       notifyListeners();
     } catch (e) {
+      print('Update profile error: $e');
       rethrow;
     }
   }
-
   Future<void> deleteProfile() async {
     try {
       await ApiService.deleteProfile();

@@ -35,7 +35,7 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(64.0),
@@ -49,28 +49,28 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
                 child: AppBar(
                   title: Text(
                     'Помощь',
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontFamily: 'Roboto',
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  backgroundColor: Color(0xFF7B3BEA).withOpacity(0.8),
+                  backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
                   elevation: 0,
                   centerTitle: false,
                   flexibleSpace: Container(
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Color(0xFF7B3BEA).withOpacity(0.15),
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                           blurRadius: 12,
                           offset: Offset(0, 4),
                         ),
                       ],
                       border: Border(
                         bottom: BorderSide(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
                           width: 0.5,
                         ),
                       ),
@@ -97,11 +97,11 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
                       duration: Duration(milliseconds: 300),
                       child: Text(
                         'Часто задаваемые вопросы',
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontFamily: 'Roboto',
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF1A1A1A),
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),
@@ -127,11 +127,11 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
                       duration: Duration(milliseconds: 300),
                       child: Text(
                         'Связаться с поддержкой',
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontFamily: 'Roboto',
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF1A1A1A),
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),
@@ -142,15 +142,15 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
                       child: Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                            color: Color(0xFF7B3BEA).withOpacity(0.3),
+                            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                             width: 0.5,
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Color(0xFF7B3BEA).withOpacity(0.2),
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                               blurRadius: 8,
                               offset: Offset(0, 4),
                             ),
@@ -161,20 +161,20 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
                           children: [
                             Text(
                               'Email поддержки',
-                              style: TextStyle(
+                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                 fontFamily: 'Roboto',
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: Color(0xFF1A1A1A),
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                             SizedBox(height: 8),
                             Text(
                               'support@serviceapp.com',
-                              style: TextStyle(
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 fontFamily: 'Roboto',
                                 fontSize: 14,
-                                color: Color(0xFF7B3BEA),
+                                color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
                             SizedBox(height: 16),
@@ -235,15 +235,15 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
         margin: EdgeInsets.only(bottom: 12),
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: Color(0xFF7B3BEA).withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
             width: 0.5,
           ),
           boxShadow: [
             BoxShadow(
-              color: Color(0xFF7B3BEA).withOpacity(0.2),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
               blurRadius: 8,
               offset: Offset(0, 4),
             ),
@@ -254,20 +254,20 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
           children: [
             Text(
               question,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             SizedBox(height: 8),
             Text(
               answer,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 14,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ],
@@ -299,14 +299,17 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
             decoration: BoxDecoration(
               gradient: gradient ??
                   LinearGradient(
-                    colors: [Color(0xFF7B3BEA), Color(0xFF9B59B6)],
+                    colors: [
+                      Theme.of(context).colorScheme.primary,
+                      Theme.of(context).colorScheme.secondary,
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Color(0xFF7B3BEA).withOpacity(0.3),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                   blurRadius: 8,
                   offset: Offset(0, 4),
                 ),
@@ -314,15 +317,15 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
             ),
             child: Text(
               text,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
             ),
-          ),
+          )
         );
       },
     );

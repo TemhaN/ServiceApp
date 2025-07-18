@@ -88,23 +88,23 @@ class _ProfileScreenState extends State<ProfileScreen>
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: AlertDialog(
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             title: Text(
               'Выход из аккаунта',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             content: Text(
               'Вы уверены, что хотите выйти из аккаунта?',
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Color(0xFF1A1A1A),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             actions: [
@@ -115,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     fontSize: 16,
-                    color: Color(0xFF7B3BEA),
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -129,7 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     fontSize: 16,
-                    color: Colors.red,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                 ),
               ),
@@ -199,28 +199,28 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          style: TextStyle(
-            fontFamily: 'Roboto',
-            fontSize: 16,
-            color: Color(0xFF1A1A1A),
+        SnackBar(
+          content: Text(
+            message,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontFamily: 'Roboto',
+              fontSize: 16,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
-        ),
-        backgroundColor: Colors.white,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: BorderSide(
-            color: Color(0xFF7B3BEA).withOpacity(0.3),
-            width: 0.5,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+            side: BorderSide(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+              width: 0.5,
+            ),
           ),
+          elevation: 8,
+          margin: EdgeInsets.all(16),
+          duration: Duration(seconds: 2),
         ),
-        elevation: 8,
-        margin: EdgeInsets.all(16),
-        duration: Duration(seconds: 2),
-      ),
     );
   }
 
@@ -229,10 +229,10 @@ class _ProfileScreenState extends State<ProfileScreen>
     final auth = Provider.of<AuthProvider>(context);
 
     return Scaffold(
-      backgroundColor: Color(0xFFF8F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true, // Контент прокручивается под островком
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(64.0),
+        preferredSize: Size.fromHeight(76.0),
         child: AnimatedBuilder(
           animation: _animationController,
           builder: (context, child) {
@@ -244,28 +244,28 @@ class _ProfileScreenState extends State<ProfileScreen>
                   automaticallyImplyLeading: false,
                   title: Text(
                     'Профиль',
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontFamily: 'Roboto',
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  backgroundColor: Color(0xFF7B3BEA).withOpacity(0.8),
+                  backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
                   elevation: 0,
                   centerTitle: false,
                   flexibleSpace: Container(
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Color(0xFF7B3BEA).withOpacity(0.15),
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                           blurRadius: 12,
                           offset: Offset(0, 4),
                         ),
                       ],
                       border: Border(
                         bottom: BorderSide(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
                           width: 0.5,
                         ),
                       ),
@@ -289,22 +289,18 @@ class _ProfileScreenState extends State<ProfileScreen>
               Icon(
                 Icons.error_outline,
                 size: 48,
-                color: Color(0xFFB0B0B0),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
               SizedBox(height: 16),
               Text(
                 _error ?? 'Не удалось загрузить профиль',
-                style: TextStyle(
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontFamily: 'Roboto',
                   fontSize: 18,
-                  color: Color(0xFFB0B0B0),
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                 ),
               ),
-              SizedBox(height: 16),
-              _buildButton(
-                text: 'Попробовать снова',
-                onPressed: _loadProfile,
-              ),
+              // ...
             ],
           ),
         )
@@ -344,20 +340,20 @@ class _ProfileScreenState extends State<ProfileScreen>
                               children: [
                                 Text(
                                   'Привет, ${auth.user!.firstName}!',
-                                  style: TextStyle(
+                                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                     fontFamily: 'Roboto',
                                     fontSize: 24,
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xFF1A1A1A),
+                                    color: Theme.of(context).colorScheme.onSurface,
                                   ),
                                 ),
                                 SizedBox(height: 4),
                                 Text(
                                   auth.user!.email,
-                                  style: TextStyle(
+                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                     fontFamily: 'Roboto',
                                     fontSize: 14,
-                                    color: Color(0xFFB0B0B0),
+                                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                                   ),
                                 ),
                               ],
@@ -404,11 +400,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                       duration: Duration(milliseconds: 300),
                       child: Text(
                         'Мои услуги',
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontFamily: 'Roboto',
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF1A1A1A),
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),
@@ -446,18 +442,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                 child: Container(
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
                     borderRadius:
                     BorderRadius.circular(16),
                     border: Border.all(
-                      color: Color(0xFF7B3BEA)
-                          .withOpacity(0.3),
+                      color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                       width: 0.5,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Color(0xFF7B3BEA)
-                            .withOpacity(0.2),
+                        color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
                         blurRadius: 8,
                         offset: Offset(0, 4),
                       ),
@@ -466,10 +460,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                   child: Center(
                     child: Text(
                       'Услуги не найдены',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontFamily: 'Roboto',
                         fontSize: 16,
-                        color: Color(0xFFB0B0B0),
+                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                       ),
                     ),
                   ),
@@ -485,8 +479,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   crossAxisCount: 2,
                   crossAxisSpacing: 16.0,
                   mainAxisSpacing: 16.0,
-                  childAspectRatio:
-                  1.0, // Уменьшил высоту карточек
+                  childAspectRatio: 0.86, // Уменьшил высоту карточек
                 ),
                 delegate: SliverChildBuilderDelegate(
                       (context, index) {
@@ -639,8 +632,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                                 null
                                                 ? '${service.price!.toInt()} \u20B8'
                                                 : 'Не указана',
-                                            style:
-                                            TextStyle(
+                                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                               fontFamily:
                                               'Roboto',
                                               fontSize:
@@ -648,8 +640,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                               fontWeight:
                                               FontWeight
                                                   .w600,
-                                              color: Color(
-                                                  0xFF7B3BEA),
+                                              color: Theme.of(context).colorScheme.primary,
                                             ),
                                             maxLines:
                                             1,
@@ -669,8 +660,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                           'Roboto',
                                           fontSize:
                                           12,
-                                          color: Color(
-                                              0xFFB0B0B0),
+                                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                                         ),
                                         maxLines: 1,
                                         overflow:
@@ -728,11 +718,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                       duration: Duration(milliseconds: 300),
                       child: Text(
                         'Настройки и поддержка',
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontFamily: 'Roboto',
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF1A1A1A),
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),
@@ -743,16 +733,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                       child: ListTile(
                         leading: Icon(
                           Icons.settings,
-                          color: Color(0xFF7B3BEA),
+                          color: Theme.of(context).colorScheme.primary,
                           size: 24,
                         ),
                         title: Text(
                           'Настройки',
-                          style: TextStyle(
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontFamily: 'Roboto',
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Color(0xFF1A1A1A),
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                           ),
                         ),
                         onTap: () {
@@ -776,16 +766,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                       child: ListTile(
                         leading: Icon(
                           Icons.help,
-                          color: Color(0xFF7B3BEA),
+                          color: Theme.of(context).colorScheme.primary,
                           size: 24,
                         ),
                         title: Text(
                           'Помощь',
-                          style: TextStyle(
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontFamily: 'Roboto',
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Color(0xFF1A1A1A),
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                           ),
                         ),
                         onTap: () {
@@ -809,16 +799,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                       child: ListTile(
                         leading: Icon(
                           Icons.info,
-                          color: Color(0xFF7B3BEA),
+                          color: Theme.of(context).colorScheme.primary,
                           size: 24,
                         ),
                         title: Text(
                           'О приложении',
-                          style: TextStyle(
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontFamily: 'Roboto',
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Color(0xFF1A1A1A),
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                           ),
                         ),
                         onTap: () {
@@ -898,14 +888,17 @@ class _ProfileScreenState extends State<ProfileScreen>
             decoration: BoxDecoration(
               gradient: gradient ??
                   LinearGradient(
-                    colors: [Color(0xFF7B3BEA), Color(0xFF9B59B6)],
+                    colors: [
+                      Theme.of(context).colorScheme.primary,
+                      Theme.of(context).colorScheme.secondary,
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Color(0xFF7B3BEA).withOpacity(0.3),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                   blurRadius: 8,
                   offset: Offset(0, 4),
                 ),
@@ -913,10 +906,10 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
             child: Text(
               text,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 fontFamily: 'Roboto',
                 fontSize: 16,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
